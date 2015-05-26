@@ -48,6 +48,17 @@ $(function () {
     //Lectura del array de objetos 
     
     // Modificación 26/05/2015
+
+            
+            var operacionPrueba={};
+            var tareaPrueba={};
+            var estadoPrueba={};
+            var mayorNumeroOperaciones={};
+            var prueba= new Array();
+            var operando = new Array();
+            var indexId= new Array();
+            var operacion_blanco="Operación no definida";
+            
      $.each(params,function(index,value)
             {
             if (value.Idtarea != ""){
