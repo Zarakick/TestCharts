@@ -47,6 +47,55 @@ $(function () {
     
     //Lectura del array de objetos 
     
+    // Modificación 26/05/2015
+     $.each(params,function(index,value)
+            {
+            if (value.Idtarea != ""){
+                
+                if (value.operacion != ""){
+                    if(!tareaPrueba.hasOwnProperty(value.Idtarea+"-"+value.tarea)){
+                     tareaPrueba[value.Idtarea+"-"+value.tarea]=value.Idtarea+"-"+value.tarea;
+                    }
+                    
+                    if (!operacionPrueba.hasOwnProperty(value.Idtarea+"-"+value.operacion)){
+                       operacionPrueba[value.Idtarea+"-"+value.operacion]=1;
+                      }
+                      else if (operacionPrueba.hasOwnProperty(value.Idtarea+"-"+value.operacion)){
+                       operacionPrueba[value.Idtarea+"-"+value.operacion]+=1;
+                      }
+                      
+                   if (!estadoPrueba.hasOwnProperty(value.Idtarea+"-"+value.estado)){
+                       estadoPrueba[value.Idtarea+"-"+value.estado]=1;
+                      }
+                      else if (estadoPrueba.hasOwnProperty(value.Idtarea+"-"+value.estado)){
+                       estadoPrueba[value.Idtarea+"-"+value.estado]+=1;
+                      }
+                      
+                }
+            }
+                 
+            });
+            
+            $.each(operacionPrueba,function (index,value){
+            tareaAsociada=index.split('-');
+            propiedad=tareaAsociada[0];
+            if (!mayorNumeroOperaciones.hasOwnProperty(propiedad)){
+                       mayorNumeroOperaciones[propiedad]=1;
+                      }
+                      else if (mayorNumeroOperaciones.hasOwnProperty(propiedad)){
+                       mayorNumeroOperaciones[propiedad]+=1;
+                      }
+                
+            });
+            
+            var arr = Object.keys( mayorNumeroOperaciones ).map(function ( key ) { return mayorNumeroOperaciones[key]; });
+            var min = Math.min.apply( null, arr );
+            var max = Math.max.apply( null, arr );
+            
+            console.log(max);
+            
+            
+    /// --------------------------------------------------------------        
     
     $('#container').highcharts({
 
